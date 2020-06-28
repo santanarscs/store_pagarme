@@ -1,0 +1,81 @@
+{
+  "customers": [
+    {
+      "id": "c2e4824f-05bf-4582-bf5b-25f8c87eb9b6",
+      "name": "Jhon Doe",
+      "email": "jhondoe@example.com",
+      "password": "abc123"
+    }
+  ],
+  "categories": [
+    {
+      "id": "4b1e12a3-120e-4b7d-a9d4-2243b82b4305",
+      "name": "Cestas"
+    },
+    {
+      "id": "02ebc385-4402-4cac-8195-bad7c3f5c538",
+      "name": "Vinhos e Espumantes"
+    },
+    {
+      "id": "eb944724-91f4-43aa-a8c8-181121eca3ae",
+      "name": "Tábuas de Frutas Secas"
+    }
+  ],
+  "products": [
+    {
+      "id": "f15fe3a3-f255-4e06-a5b3-fbddbf3e5a99",
+      "name": "Cesta 001",
+      "description": "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco",
+      "price": 100.00,
+      "quantity": 5,
+      "category_id": "4b1e12a3-120e-4b7d-a9d4-2243b82b4305",
+      "images": [
+        {
+          "id": "0602d69f-da7a-49e9-adcf-2ee2f0d87e22",
+          "url": "https://media.istockphoto.com/photos/coral-or-pink-daisy-chamomile-isolated-on-white-background-picture-id1136423603"
+        },
+        {
+          "id": "585c0253-2fdf-4d69-829b-0df544c3e6f2",
+          "url": "https://media.istockphoto.com/photos/bouquet-of-tulips-on-a-wall-paneling-background-picture-id1002114766"
+        }
+      ]
+    },
+    {
+      "id": "73c26c65-fddb-452d-abb0-93061a30dc11",
+      "name": "Cesta 002",
+      "description": "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco",
+      "price": 150.00,
+      "quantity": 2,
+      "category_id": "4b1e12a3-120e-4b7d-a9d4-2243b82b4305",
+      "images": [
+        {
+          "id": "0602d69f-da7a-49e9-adcf-2ee2f0d87e22",
+          "url": "https://media.istockphoto.com/photos/bouquet-of-pink-roses-in-the-vase-picture-id507371636"
+        },
+        {
+          "id": "585c0253-2fdf-4d69-829b-0df544c3e6f2",
+          "url": "https://media.istockphoto.com/photos/peony-flowers-in-white-vase-isolated-on-white-picture-id966174054"
+        }
+      ]
+    },
+    {
+      "id": "a7430c4b-a361-4043-8a91-9a6a5e1e9175",
+      "name": "Vinho / espumante 003",
+      "description": "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco",
+      "price": 150.00,
+      "quantity": 2,
+      "category_id": "02ebc385-4402-4cac-8195-bad7c3f5c538",
+      "images": [
+        {
+          "id": "0602d69f-da7a-49e9-adcf-2ee2f0d87e22",
+          "url": "https://media.istockphoto.com/photos/wine-pouring-into-glass-picture-id615269202"
+        },
+        {
+          "id": "585c0253-2fdf-4d69-829b-0df544c3e6f2",
+          "url": "https://media.istockphoto.com/photos/pouring-red-wine-into-a-stemless-glass-picture-id471666460"
+        }
+      ]
+    }
+  ],
+  "orders": []
+}
