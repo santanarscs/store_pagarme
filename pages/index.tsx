@@ -5,6 +5,11 @@ import { useCallback } from "react";
 import { useCart } from "../hooks/cart";
 import Cart from "../components/Cart";
 
+import { Container, Content, ProductList } from '../styles'
+interface Image { 
+  id: string;
+  url: string
+}
 interface Product {
   id: string
   name: string
@@ -12,7 +17,7 @@ interface Product {
   price: number
   quantity: number
   category_id: string
-  images: any[]
+  images: Image[]
   priceFormatted?: string
 }
 
@@ -39,31 +44,24 @@ const Home: React.FC<Props> = ({products}) => {
     addToCart(id)
   }, [])
   return (
-    <div style={{maxWidth: "900px", margin: "0 auto"}}>
+    <Container>
       <h2>Produtos</h2>
-      <div style={{display: "flex", justifyContent: "space-between"}}>
-        <ul style={{display: "flex", listStyle: "none"}}>
+      <Content >
+        <ProductList>
           {products?.map(product => (
-            <li key={product.id} style={
-                {
-                  display: "flex", 
-                  flexDirection: "column", 
-                  justifyContent: "center", 
-                  alignItems: "center",
-                  border: '1px solid #b3b3b3',
-                  padding: '10px',
-                  margin: '10px'
-                }
-              }>
+            <li key={product.id} >
+              <img src={product.images[0].url} alt=""/>
+              <div>
               <strong>{product.name}</strong>
               <small>{product.priceFormatted}</small>
               <button type="button" onClick={() => handleAddProduct(product.id)}>Adicionar ao carrinho</button>
+              </div>
             </li>
           ))}
-        </ul>
+        </ProductList>
         <Cart />
-      </div>
-    </div>
+      </Content>
+    </Container>
   )
 }
 
