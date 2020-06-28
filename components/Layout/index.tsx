@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Navbar from '../Navbar'
 
 const Layout: React.FC = ({children}) => {
   return (
@@ -8,9 +9,7 @@ const Layout: React.FC = ({children}) => {
       <title>Learn next.JS</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <header style={{maxWidth: "900px", margin: "0 auto"}}>
-      <h1>E-commerce</h1>
-    </header>
+    <Navbar />
     {children}
     </>
   )
