@@ -4,9 +4,12 @@ import { useCart } from '../../hooks/cart'
 import Link from 'next/link'
 
 import {Container} from './styles'
+import { useAuth } from '../../hooks/auth';
 
 const Cart: React.FC = () => {
   const { items, addToCart, removeFromCart } = useCart();
+  const { user } = useAuth()
+  const isLogged = !!user;
   const itemsFormatted = useMemo(() => {
     return items.map(item => ({
       ...item,
@@ -30,9 +33,14 @@ const Cart: React.FC = () => {
           </li>
         ))}
       </ul>
-      <Link href="/checkout">
+      {isLogged ? (
+        <Link href="/checkout">
         <a>Finalizr compra</a>
-      </Link>
+        </Link>
+      ): (
+        <p>Faça login para continuar</p>
+      )}
+     
     </Container>
   )
 }
