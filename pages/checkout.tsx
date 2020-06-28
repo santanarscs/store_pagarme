@@ -46,9 +46,17 @@ const Checkout: React.FC = () => {
   }
 
   const handleSubmit = useCallback(async () => {
-    const client = await pagarme.client.connect({
-      encryption_key: ''
-    })
+    try {
+      const client = await pagarme.client.connect({
+        encryption_key: 'ek_test_gJE3PjsAlpbYgjTTaXaNUbbZT3vCbE'
+      })
+      const cardData = await client.security.encrypt(card);
+      await api.post('checkouts', {
+        cardData
+      })
+    } catch(e) {
+      console.log(e)
+    }
   }, [])
 
   return (
