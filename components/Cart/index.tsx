@@ -3,6 +3,7 @@ import { formatPrice } from "../../util/formatPrice";
 import { useCart } from '../../hooks/cart'
 import Link from 'next/link'
 
+import {Container} from './styles'
 
 const Cart: React.FC = () => {
   const { items, addToCart, removeFromCart } = useCart();
@@ -13,7 +14,7 @@ const Cart: React.FC = () => {
     }))
   },[items])
   return (
-    <div>
+    <Container>
       <h2>Seu pedido:</h2>
       <ul>
         {itemsFormatted.map(item => (
@@ -23,7 +24,7 @@ const Cart: React.FC = () => {
            </div>
            <div>
              <button type="button" onClick={() => addToCart(item.id)}>+</button>
-             {item.quantity}
+             <span>{item.quantity}</span>
              <button type="button" onClick={() => removeFromCart(item.id)}>-</button>
            </div>
           </li>
@@ -32,7 +33,7 @@ const Cart: React.FC = () => {
       <Link href="/checkout">
         <a>Finalizr compra</a>
       </Link>
-    </div>
+    </Container>
   )
 }
 
