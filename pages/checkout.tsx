@@ -5,6 +5,7 @@ import { formatPrice } from '../util/formatPrice';
 import { useCart } from '../hooks/cart'
 import api from '../service/api'
 
+import { Container, CartList, Select,SumaryContainer, PaymentContainer, Button } from '../styles/checkout'
 
 const Checkout: React.FC = () => {
   const { items, total, addToCart, removeFromCart } = useCart();
@@ -31,7 +32,7 @@ const Checkout: React.FC = () => {
   },[total])
   
   const totalOrder = useMemo(() => {
-    return formatPrice(total);
+    return formatPrice(total + shippingValue);
   }, [subTotal, shippingValue])
 
   /**
@@ -60,39 +61,39 @@ const Checkout: React.FC = () => {
   }, [])
 
   return (
-    <div style={{maxWidth: "900px", margin: "0 auto"}}>
+    <Container >
       <h1>Checktou</h1>
-      <ul>
+      <CartList>
         {itemsFormatted.map(item => (
           <li key={item.id}>
             <strong>{item.name}</strong><small>({item.priceFormatted})</small>
             <div>
              <button type="button" onClick={() => addToCart(item.id)}>+</button>
-             {item.quantity}
+             <span>{item.quantity}</span>
              <button type="button" onClick={() => removeFromCart(item.id)}>-</button>
            </div>
             <p>{item.description}</p>
           </li>
         ))}
-      </ul>
-      <select name="shippingType" id="shippingType" onChange={(e) => setShippingValue(Number(e.target.value))}>
+      </CartList>
+      <Select name="shippingType" id="shippingType" value={shippingValue} onChange={(e) => setShippingValue(Number(e.target.value))}>
         <option value="0">Buscar na loja</option>
         <option value="10">Guará</option>
         <option value="20">Taguatinga</option>
         <option value="100">Vicente Pires</option>
-      </select>
-      <h3>Subtotal: {subTotal}</h3>
-      <h4>Frete: {formatPrice(shippingValue)} </h4>
-      <h4>Total: {totalOrder} </h4>
-      <hr/>
+      </Select>
+      <SumaryContainer>
+        <h3>Subtotal: {subTotal}</h3>
+        <h4>Frete: {formatPrice(shippingValue)} </h4>
+        <h4>Total: {totalOrder} </h4>
+      </SumaryContainer>
       <h1>Informações de pagamento</h1>
-      <select name="paymentType" id="paymentType" onChange={(e) => setPaymentValue(Number(e.target.value))}>
+      <Select name="paymentType" id="paymentType" onChange={(e) => setPaymentValue(Number(e.target.value))}>
         <option value="1">Transferência Bancária</option>
         <option value="2">Cartão de débito</option>
         <option value="3">Cartão de Crédito</option>
-      </select>
-      <hr/>
-      <div>
+      </Select>
+      <PaymentContainer>
         {paymentValue === 3 && (
           <>
             <div className="form-area">
@@ -142,9 +143,9 @@ const Checkout: React.FC = () => {
           </div>
           </>
         )}
-      </div>
-      <button type="button" onClick={handleSubmit}>FINALIZAR PAGAMENTO</button>
-    </div>
+      </PaymentContainer>
+      <Button type="button" onClick={handleSubmit}>FINALIZAR PAGAMENTO</Button>
+    </Container>
   )
 }
 
