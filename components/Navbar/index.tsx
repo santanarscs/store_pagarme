@@ -1,10 +1,22 @@
 import React from 'react'
-import { Container } from './styles'
+import Link from 'next/link'
+import { Container, Content } from './styles'
 
 const Navbar: React.FC = () => {
   return (
     <Container>
-      <h1>Meu e-commerce</h1>
+      <Content>
+        <Link href="/">
+          <a >
+            Meu e-commerce
+          </a>
+        </Link>
+        <div>
+          <Link href="/signin">
+            <a>Login</a>
+          </Link>
+        </div>
+      </Content>
     </Container>
   )
 }
