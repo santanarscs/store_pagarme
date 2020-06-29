@@ -8,8 +8,9 @@ const GlobalStyle =  createGlobalStyle`
   }
   body {
     -webkit-font-smoothing: antialiased;
-    background: #fff;
+    background: #f7faff;
     color: #353535;
+    text-rendering: optimizeLegibility;
   }
   body, input, button {
     font-family: 'Exo 2', sans-serif;

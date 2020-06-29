@@ -32,7 +32,7 @@ export const ProductList = styled.ul`
         height: 50px;
         padding: 0 10px;
         border: none;
-        background: #2979ff;
+        background: #557cf2;
         color: #fff;
         border-radius: 5px;
       }
