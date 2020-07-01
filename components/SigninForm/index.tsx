@@ -10,10 +10,11 @@ interface FormData {
 
 const SigninForm: React.FC = () => {
   const  [formData, setFormData] = useState<FormData>({} as FormData)
-  const { signIn } = useAuth();
+  const {user, signIn } = useAuth();
 
-  const handleSubmit = useCallback(async () => {
-    if(!formData.email && !formData.password){
+  const handleSubmit = useCallback(async (e) => {
+    e.preventDefault();
+    if(formData.email && formData.password){
       signIn(formData)
       Router.push('/')
     }
