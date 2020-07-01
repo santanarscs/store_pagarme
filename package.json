@@ -16,6 +16,7 @@
     "react": "16.13.1",
     "react-credit-cards": "^0.8.3",
     "react-dom": "16.13.1",
+    "react-icons": "^3.10.0",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
@@ -23,6 +24,7 @@
     "@types/node": "^14.0.14",
     "@types/react": "^16.9.41",
     "@types/react-credit-cards": "^0.8.0",
+    "@types/react-icons": "^3.0.0",
     "@types/styled-components": "^5.1.0",
     "typescript": "^3.9.5"
   }
