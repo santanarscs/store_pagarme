@@ -59,7 +59,6 @@ const Home: React.FC<Props> = ({products}) => {
             </li>
           ))}
         </ProductList>
-        <Cart />
       </Content>
     </Container>
   )
