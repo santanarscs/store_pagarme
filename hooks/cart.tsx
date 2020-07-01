@@ -7,8 +7,8 @@ interface Product {
   description: string
   price: number
   quantity: number
-  category_id: string
-  images: any[]
+  category_id?: string
+  images?: any[]
 }
 
 interface CartState {
@@ -59,7 +59,7 @@ const CartProvider: React.FC = ({children}) => {
         }
         const data = {
           items: [...state.items, product],
-          total: state.total + product.price
+          total: state.total + Number(product.price)
         }
         localStorage.setItem('@store-cart:items', JSON.stringify(data.items));
         localStorage.setItem('@store-cart:total', JSON.stringify(data.total));

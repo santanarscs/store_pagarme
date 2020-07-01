@@ -46,17 +46,18 @@ const AuthProvider: React.FC  = ({children}) => {
       email,
       password,
     });
+    console.log(response.data)
     const { token, user } = response.data;
 
-    localStorage.setItem('@store-customer:token', token);
-    localStorage.setItem('@store-customer:user', JSON.stringify(user));
+    localStorage.setItem('@store-auth:token', token);
+    localStorage.setItem('@store-auth:user', JSON.stringify(user));
     api.defaults.headers.authorization = `Berar ${token}`;
     setData({ token, user });
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@store-customer:token');
-    localStorage.removeItem('@store-customer:user');
+    localStorage.removeItem('@store-auth:token');
+    localStorage.removeItem('@store-auth:user');
     setData({} as AuthState);
   }, []);
   return (
