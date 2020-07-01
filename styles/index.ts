@@ -10,8 +10,11 @@ export const Content = styled.div`
 `
 
 export const ProductList = styled.ul`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
   list-style: none;
+
   li {
     width: 200px;
     display: flex;

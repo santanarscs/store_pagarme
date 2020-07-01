@@ -17,7 +17,7 @@ interface Product {
   price: number
   quantity: number
   category_id: string
-  images: Image[]
+  images?: Image[]
   priceFormatted?: string
 }
 
@@ -50,7 +50,7 @@ const Home: React.FC<Props> = ({products}) => {
         <ProductList>
           {products?.map(product => (
             <li key={product.id} >
-              <img src={product.images[0].url} alt=""/>
+              {/* <img src={product.images?[0].url} alt=""/> */}
               <div>
               <strong>{product.name}</strong>
               <small>{product.priceFormatted}</small>
