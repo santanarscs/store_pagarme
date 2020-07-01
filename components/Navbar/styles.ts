@@ -3,10 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.nav`
   width: 100%;
   height: 70px;
-  background: #557cf2;
-  color: #fff;
-  box-shadow: 0 0 1px 0 rgba(59, 89, 178, 0.08),
-    0 4px 14px rgba(59, 89, 178, 0.06);
+  background: transparent;
+  color: #353535;
+  border-bottom: 1px solid #B3B3B3;
 `;
 export const Content = styled.div`
   margin: 0 auto;
@@ -18,16 +17,33 @@ export const Content = styled.div`
   a {
     text-decoration: none;
     text-transform: uppercase;
-    color: #FFFF;
+    color: #353535;
+    position: relative;
     & + a {
       margin-left: 10px;
     }
-  }
-  button {
-    border: none;
-    background:none;
-    color: #FFFF;
-    text-transform: uppercase;
-    margin-right: 10px;
+    svg {
+      color: #555555;
+      transition: color .2s;
+    }
+    span {
+      position: absolute;
+      top: -10px;
+      right: -8px;
+      background: #C867A8;
+      color: #fff;
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    &:hover {
+      svg {
+        color: #C867A8
+      }
+    }
   }
 `
