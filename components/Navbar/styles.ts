@@ -19,6 +19,15 @@ export const Content = styled.div`
     text-decoration: none;
     text-transform: uppercase;
     color: #FFFF;
-
+    & + a {
+      margin-left: 10px;
+    }
+  }
+  button {
+    border: none;
+    background:none;
+    color: #FFFF;
+    text-transform: uppercase;
+    margin-right: 10px;
   }
 `
