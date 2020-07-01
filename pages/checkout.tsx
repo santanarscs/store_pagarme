@@ -5,6 +5,8 @@ import { formatPrice } from '../util/formatPrice';
 import { useCart } from '../hooks/cart'
 import api from '../service/api'
 
+import formData from '../data'
+
 import { Container, CartList, Select,SumaryContainer, PaymentContainer, Button } from '../styles/checkout'
 
 const Checkout: React.FC = () => {
@@ -13,10 +15,10 @@ const Checkout: React.FC = () => {
   const [paymentValue, setPaymentValue] = useState<number>(0)
 
   const [card, setCard] = useState({
-    holder_name: '',
-    number: '',
-    expiration_date: '',
-    cvv: '',
+    card_holder_name: '',
+    card_number: '',
+    card_expiration_date: '',
+    card_cvv: '',
     id: '',
   });
 
@@ -52,8 +54,12 @@ const Checkout: React.FC = () => {
         encryption_key: 'ek_test_gJE3PjsAlpbYgjTTaXaNUbbZT3vCbE'
       })
       const cardData = await client.security.encrypt(card);
+
       await api.post('checkouts', {
-        cardData
+        ...formData,
+        items,
+        amount: total + shippingValue,
+        card_hash: cardData
       })
     } catch(e) {
       console.log(e)
@@ -97,35 +103,35 @@ const Checkout: React.FC = () => {
         {paymentValue === 3 && (
           <>
             <div className="form-area">
-            <label htmlFor="holder_name">Nome Completo</label>
+            <label htmlFor="card_holder_name">Nome Completo</label>
             <input
-              id="holder_name"
-              name="holder_name"
+              id="card_holder_name"
+              name="card_holder_name"
               type="text"
               onChange={handleChangeCard}
             />
-            <label htmlFor="number">Número do cartão</label>
+            <label htmlFor="card_number">Número do cartão</label>
             <input
-              id="number"
-              name="number"
+              id="card_number"
+              name="card_number"
               type="text"
               onChange={handleChangeCard}
             />
             <div className="group">
               <div>
-                <label htmlFor="expiration_date">Vencimento</label>
+                <label htmlFor="card_expiration_date">Vencimento</label>
                 <input
-                  id="expiration_date"
-                  name="expiration_date"
+                  id="card_expiration_date"
+                  name="card_expiration_date"
                   type="text"
                   onChange={handleChangeCard}
                 />
               </div>
               <div>
-              <label htmlFor="cvv">CVV</label>
+              <label htmlFor="card_cvv">CVC</label>
                 <input
-                  id="cvv"
-                  name="cvv"
+                  id="card_cvv"
+                  name="card_cvv"
                   type="text"
                   onChange={handleChangeCard}
                 />
@@ -134,10 +140,10 @@ const Checkout: React.FC = () => {
           </div>
           <div className="credit-card">
             <Cards
-              number={card.number}
-              name={card.holder_name}
-              expiry={card.expiration_date}
-              cvc={card.cvv}
+              number={card.card_number}
+              name={card.card_holder_name}
+              expiry={card.card_expiration_date}
+              cvc={card.card_cvv}
               focused="number"
             />
           </div>
@@ -150,3 +156,4 @@ const Checkout: React.FC = () => {
 }
 
 export default Checkout;
+// card number = 5252893142325275
