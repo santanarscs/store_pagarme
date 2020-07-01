@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { useAuth } from '../../hooks/auth'
 import Router from 'next/router'
 import { Container } from './styles'
+import Link from 'next/link'
 
 interface FormData {
   email: string;
@@ -10,7 +11,7 @@ interface FormData {
 
 const SigninForm: React.FC = () => {
   const  [formData, setFormData] = useState<FormData>({} as FormData)
-  const {user, signIn } = useAuth();
+  const { signIn } = useAuth();
 
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
@@ -29,6 +30,9 @@ const SigninForm: React.FC = () => {
         <input type="password" placeholder="Sua senha" onChange={e => setFormData({...formData, password: e.target.value})}/>
         <button type="submit">Entrar</button>
       </form>
+      <Link href="/register">
+        <a>Criar conta</a>
+      </Link>
     </Container>
   )
 }

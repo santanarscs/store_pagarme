@@ -39,4 +39,7 @@ export const Container = styled.div`
         }
       }
     }
+    a{
+      margin-top: 20px;
+    }
 `;
