@@ -1,74 +1,50 @@
-import { GetStaticProps } from "next";
+import { GetStaticProps, GetServerSideProps } from "next";
 import api from "../service/api";
-import { formatPrice } from "../util/formatPrice";
-import { useCallback } from "react";
-import { useCart } from "../hooks/cart";
-import Search from "../components/Search";
-import { Container, Content, ProductList } from '../styles'
 
-interface Image { 
+import { Container, Content, ProductList } from '../styles'
+import getAllCategories from "./api/categories";
+import Link from "next/link";
+import Router, { useRouter } from "next/router";
+
+interface Category {
   id: string;
-  url: string
-}
-interface Product {
-  id: string
-  name: string
-  description: string
-  price: number
-  quantity: number
-  category_id: string
-  principal_image: string;
-  image?: Image[]
-  priceFormatted?: string
+  name: string;
 }
 
 interface Props {
-  products: Product[]
+  categories: Category[]
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const response = await api.get<Product[]>('products')
-  const products = response.data.map(product => ({
-    ...product,
-    priceFormatted: formatPrice(product.price)
-  }))
-  return {
-    props: {
-      products
-    }
-  }
+export const getServerSideProps: GetServerSideProps = async () => {
+  const {data: categories} = await api.get('categories');
+  return { props: {categories} }
 }
 
-const Home: React.FC<Props> = ({products}) => {
-  const { addToCart } = useCart()
-  const handleAddProduct = useCallback(async (id: string) => {
-    addToCart(id)
-  }, [])
-  const handleSearch = useCallback(async (term: string) => {
-    console.log(term)
+//listar todas as categorias do banco de dados
 
-  },[])
+const Home: React.FC<Props> = ({categories}) => {
+
+  const { query } = useRouter()
+
   return (
     <Container>
-      <h2>Produtos</h2>
-      <Search 
-        placeholder="Buscar produto"
-        handleSearch={handleSearch}
-      />
-
+      <h2>Pagina inicial</h2>
       <Content>
-        <ProductList>
-          {products?.map(product => (
-            <li key={product.id} >
-              <img src={`http://localhost:3333/files/${product.principal_image}`} alt=""/>
-              <div>
-              <strong>{product.name}</strong>
-              <small>{product.priceFormatted}</small>
-              <button type="button" onClick={() => handleAddProduct(product.id)}>Adicionar ao carrinho</button>
-              </div>
-            </li>
+        <ul>
+          {categories.map(category => (
+           <li key={category.id}>
+             <Link href={{
+               pathname: '/products',
+               query: {
+                 category_id: category.id,
+                 page: 1
+               }
+             }} >
+              <a>{category.name}</a>
+             </Link>
+           </li>
           ))}
-        </ProductList>
+        </ul>
       </Content>
     </Container>
   )
