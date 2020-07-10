@@ -25,19 +25,24 @@ interface SearchParams {
 
 productsRoutes.get('/', async (request: Request, response: Response) => {
   try {
-    const { name, category_id } = request.query;
+    const { q, category_id, _page, _limit } = request.query;
+
     const params: SearchParams[] = [];
-    if (name) {
-      params.push({ name: Like(`%${name}%`) });
+    if (q) {
+      params.push({ name: Like(`%${q}%`) });
     }
     if (category_id) {
       params.push({ category_id: category_id as string });
     }
 
     const productsRepository = getRepository(Product);
+    const countProducts = await productsRepository.count();
     const products = await productsRepository.find({
       where: params,
+      skip: (Number(_page) - 1) * Number(_limit),
+      take: Number(_limit),
     });
+    response.header('x-total-count', String(countProducts));
     return response.json(products);
   } catch (err) {
     return response.status(400).json({ error: err.message });
