@@ -36,7 +36,9 @@ productsRoutes.get('/', async (request: Request, response: Response) => {
     }
 
     const productsRepository = getRepository(Product);
-    const countProducts = await productsRepository.count();
+    const countProducts = await productsRepository.count({
+      where: { category_id },
+    });
     const products = await productsRepository.find({
       where: params,
       skip: (Number(_page) - 1) * Number(_limit),
