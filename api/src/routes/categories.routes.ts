@@ -8,7 +8,9 @@ const categoriesRouter = Router();
 categoriesRouter.get('/', async (request, response) => {
   try {
     const categoriesRepository = getCustomRepository(CategoriesRepository);
-    const categories = await categoriesRepository.find();
+    const categories = await categoriesRepository.find({
+      order: { name: 'ASC' },
+    });
     return response.json(categories);
   } catch (err) {
     return response.status(400).json({ error: err.message });
